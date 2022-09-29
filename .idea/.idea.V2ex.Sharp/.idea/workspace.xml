@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cf6479ea-0bcc-45ab-b0ff-7a793813ac70" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.V2ex.Sharp/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/V2exSharp.sln" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/V2exSharp/Client/IV2exApiClient.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/V2exSharp/Client/V2exAPIClient.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/V2exSharp/DependencyInjection/V2exSharpBuilderExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/V2exSharp/Option/V2exSharpOption.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/V2exSharp/V2exSharp.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/V2exSharp.ApiTest/BaseApiTestFixture.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/V2exSharp.ApiTest/V2exSharp.ApiTest.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/V2exSharp.ApiTest/appsettings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/V2exSharp.UnitTest/ApiClientTestFixture.cs" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/V2exSharp/Client/IV2exApiClient.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/V2exSharp/Client/V2exAPIClient.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/test/V2exSharp.ApiTest/BaseApiTestFixture.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/test/V2exSharp.ApiTest/Usings.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2FROimYXXydOiORAGBHHxmRdYKS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "/Users/qiang.zhou1/Library/Application Support/JetBrains/Rider2022.3/resharper-host/DecompilerCache",
+      "/Users/qiang.zhou1/Library/Application Support/JetBrains/Rider2022.3/resharper-host/SourcesCache",
+      "/Users/qiang.zhou1/.local/share/Symbols/src"
+    ]
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cf6479ea-0bcc-45ab-b0ff-7a793813ac70" name="Changes" comment="" />
+      <created>1664451559284</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1664451559284</updated>
+      <workItem from="1664451561022" duration="3509000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>
