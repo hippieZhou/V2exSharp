@@ -1,7 +1,6 @@
 namespace V2exSharp.Option;
 
-public class V2exSharpOption
+public class V2ExSharpConfiguration
 {
     public string AccessToken { get; set; }
-    public bool Deubg { get; set; }
 }

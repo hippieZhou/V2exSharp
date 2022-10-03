@@ -22,4 +22,8 @@
         </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\V2exSharp\V2exSharp.csproj" />
+    </ItemGroup>
+
 </Project>

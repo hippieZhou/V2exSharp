@@ -1,6 +1,11 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1f70d584_002Da367_002D429c_002D921d_002D8ba7d3c336a9/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="should_get_null_when_not_register_into_ioc" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::E675B85A-78A7-4EFB-A2AE-B2DA6B605884::net6.0::V2exSharp.UnitTest.ApiClientTestFixture&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
+  &lt;Or&gt;
+    &lt;TestAncestor&gt;
+      &lt;TestId&gt;xUnit::E675B85A-78A7-4EFB-A2AE-B2DA6B605884::net6.0::V2exSharp.UnitTest.ApiClientTestFixture&lt;/TestId&gt;
+      &lt;TestId&gt;xUnit::38AB3437-111D-4529-B746-C18E5B0C137A::net6.0::V2exSharp.ApiTest.V2exAPIFacts.should_not_empty_when_get_nodesList&lt;/TestId&gt;
+      &lt;TestId&gt;xUnit::38AB3437-111D-4529-B746-C18E5B0C137A::net6.0::V2exSharp.ApiTest.V2exAPIFacts.should_not_empty_when_get_latestTopics&lt;/TestId&gt;
+    &lt;/TestAncestor&gt;
+    &lt;Project Location="/Users/qiang.zhou1/Desktop/V2ex.Sharp/test/V2exSharp.ApiTest" Presentation="&amp;lt;test&amp;gt;\&amp;lt;V2exSharp.ApiTest&amp;gt;" /&gt;
+  &lt;/Or&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

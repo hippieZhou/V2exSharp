@@ -2,19 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf6479ea-0bcc-45ab-b0ff-7a793813ac70" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.V2ex.Sharp/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/V2exSharp.sln" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/V2exSharp/Client/IV2exApiClient.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/V2exSharp/Client/V2exAPIClient.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/V2exSharp/DependencyInjection/V2exSharpBuilderExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/V2exSharp/Option/V2exSharpOption.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/V2exSharp/V2exSharp.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/V2exSharp.ApiTest/BaseApiTestFixture.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/V2exSharp.ApiTest/V2exSharp.ApiTest.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/V2exSharp.ApiTest/appsettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/V2exSharp.UnitTest/ApiClientTestFixture.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/V2exSharp/Models/V2Member.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/V2exSharp/Models/V2Node.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/V2exSharp/Models/V2Topic.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/V2exSharp.ApiTest/V2exAPIFacts.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.V2ex.Sharp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.V2ex.Sharp/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/V2exSharp.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/V2exSharp.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/V2exSharp/Client/IV2exApiClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/V2exSharp/Client/IV2exApiClient.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/V2exSharp/Client/V2exAPIClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/V2exSharp/Client/V2exAPIClient.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/V2exSharp/DependencyInjection/V2exSharpBuilderExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/V2exSharp/DependencyInjection/V2exSharpBuilderExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/V2exSharp/Option/V2exSharpOption.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/V2exSharp/Config/V2ExSharpConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/V2exSharp/V2exSharp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/V2exSharp/V2exSharp.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/V2exSharp.ApiTest/BaseApiTestFixture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/V2exSharp.ApiTest/BaseApiTestFixture.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/V2exSharp.ApiTest/V2exSharp.ApiTest.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/test/V2exSharp.ApiTest/V2exSharp.ApiTest.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/V2exSharp.UnitTest/ApiClientTestFixture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/V2exSharp.UnitTest/ApiClientTestFixture.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,10 +24,17 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/V2exSharp/Client/IV2exApiClient.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/V2exSharp/Client/V2exAPIClient.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/test/V2exSharp.ApiTest/BaseApiTestFixture.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/test/V2exSharp.ApiTest/Usings.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/29f4874e8017445a96a047cd9adcd1f88c00/5e/881ef8f5/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3ffd357edc2a40c8b55bff12c6411615ba00/3e/76e3dd8f/HttpClient.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3ffd357edc2a40c8b55bff12c6411615ba00/b4/ff7055b1/HttpRequestMessage.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/74d329eaf1ee42f081dec761965a67135600/b9/4181c192/OptionsConfigurationServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c6f6d2cf1d5e44acb4cebe58d018e4af1b2600/d9/71edf718/HttpMethod.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/866a5ab7321342f8320e812c42b5fcda9f1a6162ab347e5ec836218e25fe98/HttpClientFactoryServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -41,6 +50,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   },
@@ -60,7 +70,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1664451559284</updated>
-      <workItem from="1664451561022" duration="3509000" />
+      <workItem from="1664451561022" duration="14085000" />
     </task>
     <servers />
   </component>
