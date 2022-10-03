@@ -45,5 +45,15 @@ namespace V2exSharp.Client
         /// <returns></returns>
         Task<V2Member> GetMemberShowAsync(string username, int? id = null,
             CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 获取指定节点下的主题
+        /// </summary>
+        /// <param name="nodeName">节点名，如 "swift"</param>
+        /// <param name="page">分页页码，默认为 1</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<V2Response<IEnumerable<V2Topic>>> GetTopicsAsync(string nodeName, int page = 1,
+            CancellationToken cancellationToken = default);
     }
 }

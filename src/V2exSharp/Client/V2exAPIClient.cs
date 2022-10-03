@@ -79,6 +79,15 @@ namespace V2exSharp.Client
             return await RequestGetAsync<V2Member>($"{endpointV1}members/show.json?{queryString}", cancellationToken);
         }
 
+        public async Task<V2Response<IEnumerable<V2Topic>>> GetTopicsAsync(string nodeName, int page = 1,
+            CancellationToken cancellationToken = default)
+        {
+            var queryString = HttpUtility.ParseQueryString(string.Empty);
+            queryString.Add("nodeName", nodeName);
+            return await RequestGetAsync<V2Response<IEnumerable<V2Topic>>>($"{endpointV2}nodes/{nodeName}/topics",
+                cancellationToken);
+        }
+
         private async Task<T> RequestGetAsync<T>(string requestUri, CancellationToken cancellationToken)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, requestUri);

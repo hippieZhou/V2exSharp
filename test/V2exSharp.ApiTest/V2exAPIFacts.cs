@@ -1,4 +1,3 @@
-using System.Globalization;
 using V2exSharp.Client;
 
 namespace V2exSharp.ApiTest;
@@ -45,5 +44,12 @@ public class V2exAPIFacts : BaseApiTestFixture
     {
         var member = await _apiClient.GetMemberShowAsync("hippiezhou");
         Assert.Equal("hippiezhou", member.Username, true);
+    }
+
+    [Fact]
+    public async Task should_not_empty_when_get_topics()
+    {
+        var response = await _apiClient.GetTopicsAsync("swift");
+        Assert.True(response.Success);
     }
 }
