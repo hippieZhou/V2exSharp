@@ -1,3 +1,4 @@
+using System.Globalization;
 using V2exSharp.Client;
 
 namespace V2exSharp.ApiTest;
@@ -33,9 +34,16 @@ public class V2exAPIFacts : BaseApiTestFixture
     }
 
     [Fact]
-    public async Task should_not_empty_when_getnodesShow()
+    public async Task should_not_null_when_getnodesShow()
     {
         var node = await _apiClient.GetNodesShowAsync("swift");
         Assert.NotNull(node);
+    }
+
+    [Fact]
+    public async Task should_not_null_when_get_memberShow()
+    {
+        var member = await _apiClient.GetMemberShowAsync("hippiezhou");
+        Assert.Equal("hippiezhou", member.Username, true);
     }
 }

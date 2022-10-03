@@ -35,5 +35,15 @@ namespace V2exSharp.Client
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<V2Node> GetNodesShowAsync(string name, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 获取用户主页（获得指定用户的自我介绍，及其登记的社交网站信息。）
+        /// </summary>
+        /// <param name="username">用户名</param>
+        /// <param name="id">用户在 V2EX 的数字 ID</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<V2Member> GetMemberShowAsync(string username, int? id = null,
+            CancellationToken cancellationToken = default);
     }
 }

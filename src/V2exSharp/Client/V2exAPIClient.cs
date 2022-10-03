@@ -66,6 +66,19 @@ namespace V2exSharp.Client
             return await RequestGetAsync<V2Node>($"{endpointV1}nodes/show.json?{queryString}", cancellationToken);
         }
 
+        public async Task<V2Member> GetMemberShowAsync(string username, int? id = null,
+            CancellationToken cancellationToken = default)
+        {
+            var queryString = HttpUtility.ParseQueryString(string.Empty);
+            queryString.Add("username", username);
+            if (id.HasValue)
+            {
+                queryString.Add("id", id.ToString());
+            }
+
+            return await RequestGetAsync<V2Member>($"{endpointV1}members/show.json?{queryString}", cancellationToken);
+        }
+
         private async Task<T> RequestGetAsync<T>(string requestUri, CancellationToken cancellationToken)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
