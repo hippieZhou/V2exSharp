@@ -1,3 +1,4 @@
+using System.Net;
 using V2exSharp.Client;
 
 namespace V2exSharp.ApiTest;
@@ -78,8 +79,9 @@ public class V2exAPIFacts : BaseApiTestFixture
     [Fact]
     public async Task should_success_when_delete_notification()
     {
-        var response = await _apiClient.DeleteNotificationAsync(16964359);
-        Assert.NotNull(response);
+        var ex = await Assert.ThrowsAsync<HttpRequestException>(async () =>
+            await _apiClient.DeleteNotificationAsync(16964359));
+        Assert.Equal(HttpStatusCode.NotFound, ex.StatusCode);
     }
 
     [Fact]
