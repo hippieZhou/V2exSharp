@@ -88,5 +88,21 @@ namespace V2exSharp.Client
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<V2Response<object>> DeleteNotificationAsync(int notificationId, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 获取自己的 Profile
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<V2Response<V2Member>> GetMemberAsync(CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 创建新的令牌（你可以在系统中最多创建 10 个 Personal Access Token。）
+        /// </summary>
+        /// <param name="expiration">可支持的值：2592000，5184000，7776000 或者 15552000，即 30 天，60 天，90 天或者 180 天的秒数</param>
+        /// <param name="scope">可选 everything 或者 regular，如果是 regular 类型的 Token 将不能用于进一步创建新的 token</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<V2Response<V2Token>> CreateTokenAsync(int expiration,string scope, CancellationToken cancellationToken = default);
     }
 }

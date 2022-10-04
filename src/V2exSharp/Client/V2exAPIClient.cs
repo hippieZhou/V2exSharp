@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
@@ -118,6 +120,30 @@ namespace V2exSharp.Client
             response.EnsureSuccessStatusCode();
             var json = await response.Content.ReadAsStringAsync();
             return JsonSerializer.Deserialize<V2Response<object>>(json, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                AllowTrailingCommas = true
+            });
+        }
+
+        public async Task<V2Response<V2Member>> GetMemberAsync(CancellationToken cancellationToken = default)
+        {
+            return await RequestGetAsync<V2Response<V2Member>>($"{endpointV2}member", cancellationToken);
+        }
+
+        public async Task<V2Response<V2Token>> CreateTokenAsync(int expiration, string scope,
+            CancellationToken cancellationToken = default)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{endpointV2}tokens");
+            request.Headers.Clear();
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _configuration.AccessToken);
+            request.Content = new StringContent(JsonSerializer.Serialize(new {expiration, scope}), Encoding.UTF8,
+                "application/json");
+            var response = await _httpClient.SendAsync(request, cancellationToken);
+            response.EnsureSuccessStatusCode();
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<V2Response<V2Token>>(json, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true,
                 AllowTrailingCommas = true

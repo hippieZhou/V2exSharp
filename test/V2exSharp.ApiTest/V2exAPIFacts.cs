@@ -81,4 +81,18 @@ public class V2exAPIFacts : BaseApiTestFixture
         var response = await _apiClient.DeleteNotificationAsync(16964359);
         Assert.NotNull(response);
     }
+
+    [Fact]
+    public async Task should_not_null_when_getMember()
+    {
+        var response = await _apiClient.GetMemberAsync();
+        Assert.Equal("hippiezhou", response.Result.Username, true);
+    }
+
+    [Fact]
+    public async Task should_success_when_createToken()
+    {
+        var response = await _apiClient.CreateTokenAsync(2592000, "regular");
+        Assert.True(response.Success);
+    }
 }
