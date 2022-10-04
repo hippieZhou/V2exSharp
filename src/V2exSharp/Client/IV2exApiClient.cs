@@ -71,5 +71,14 @@ namespace V2exSharp.Client
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<V2Response<V2Node>> GetNodeAsync(string nodeName, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// 获取最新的提醒
+        /// </summary>
+        /// <param name="page">分页页码，默认为 1</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<V2Response<IEnumerable<V2Notification>>> GetNotificationAsync(int page = 1,
+            CancellationToken cancellationToken = default);
     }
 }

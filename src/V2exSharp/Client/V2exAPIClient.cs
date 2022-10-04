@@ -98,6 +98,15 @@ namespace V2exSharp.Client
             return await RequestGetAsync<V2Response<V2Node>>($"{endpointV2}nodes/{nodeName}", cancellationToken);
         }
 
+        public async Task<V2Response<IEnumerable<V2Notification>>> GetNotificationAsync(int page = 1,
+            CancellationToken cancellationToken = default)
+        {
+            var queryString = HttpUtility.ParseQueryString(string.Empty);
+            queryString.Add("p", page.ToString());
+            return await RequestGetAsync<V2Response<IEnumerable<V2Notification>>>($"{endpointV2}notifications?{queryString}",
+                cancellationToken);
+        }
+
         private async Task<T> RequestGetAsync<T>(string requestUri, CancellationToken cancellationToken)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, requestUri);

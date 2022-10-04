@@ -67,4 +67,11 @@ public class V2exAPIFacts : BaseApiTestFixture
         Assert.True(response.Success);
         Assert.Equal("swift", response.Result.Title, true);
     }
+
+    [Fact]
+    public async Task should_success_when_get_notification()
+    {
+        var response = await _apiClient.GetNotificationAsync();
+        Assert.NotNull(response);
+    }
 }
