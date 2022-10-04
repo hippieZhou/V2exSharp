@@ -88,6 +88,11 @@ namespace V2exSharp.Client
                 cancellationToken);
         }
 
+        public async Task<V2Response<V2Topic>> GetTopicAsync(int topicId, CancellationToken cancellationToken = default)
+        {
+            return await RequestGetAsync<V2Response<V2Topic>>($"{endpointV2}topics/{topicId}", cancellationToken);
+        }
+
         private async Task<T> RequestGetAsync<T>(string requestUri, CancellationToken cancellationToken)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, requestUri);

@@ -55,5 +55,13 @@ namespace V2exSharp.Client
         /// <returns></returns>
         Task<V2Response<IEnumerable<V2Topic>>> GetTopicsAsync(string nodeName, int page = 1,
             CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 获取指定主题
+        /// </summary>
+        /// <param name="topicId">主题ID</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<V2Response<V2Topic>> GetTopicAsync(int topicId, CancellationToken cancellationToken = default);
     }
 }

@@ -33,7 +33,7 @@ public class V2exAPIFacts : BaseApiTestFixture
     }
 
     [Fact]
-    public async Task should_not_null_when_getnodesShow()
+    public async Task should_not_null_when_get_nodesShow()
     {
         var node = await _apiClient.GetNodesShowAsync("swift");
         Assert.NotNull(node);
@@ -47,9 +47,16 @@ public class V2exAPIFacts : BaseApiTestFixture
     }
 
     [Fact]
-    public async Task should_not_empty_when_get_topics()
+    public async Task should_not_empty_when_get_topics_by_name()
     {
         var response = await _apiClient.GetTopicsAsync("swift");
+        Assert.True(response.Success);
+    }
+
+    [Fact]
+    public async Task should_not_empty_when_get_topic_by_id()
+    {
+        var response = await _apiClient.GetTopicAsync(870607);
         Assert.True(response.Success);
     }
 }
