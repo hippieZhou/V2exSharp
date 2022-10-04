@@ -60,7 +60,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1664451559284</updated>
-      <workItem from="1664451561022" duration="16894000" />
+      <workItem from="1664451561022" duration="17194000" />
     </task>
     <servers />
   </component>
@@ -98,6 +98,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/test/V2exSharp.ApiTest/V2exAPIFacts.cs</url>
+          <line>66</line>
+          <properties documentPath="$PROJECT_DIR$/test/V2exSharp.ApiTest/V2exAPIFacts.cs" initialLine="66" containingFunctionPresentation="method 'should_not_empty_when_get_Node'">
+            <startOffsets>
+              <option value="1686" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1716" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

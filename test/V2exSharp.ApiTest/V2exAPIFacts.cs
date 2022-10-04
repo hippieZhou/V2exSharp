@@ -59,4 +59,12 @@ public class V2exAPIFacts : BaseApiTestFixture
         var response = await _apiClient.GetTopicAsync(870607);
         Assert.True(response.Success);
     }
+
+    [Fact]
+    public async Task should_not_empty_when_get_Node()
+    {
+        var response = await _apiClient.GetNodeAsync("swift");
+        Assert.True(response.Success);
+        Assert.Equal("swift", response.Result.Title, true);
+    }
 }

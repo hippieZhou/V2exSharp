@@ -63,5 +63,13 @@ namespace V2exSharp.Client
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<V2Response<V2Topic>> GetTopicAsync(int topicId, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 获取指定节点
+        /// </summary>
+        /// <param name="nodeName">节点名</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<V2Response<V2Node>> GetNodeAsync(string nodeName, CancellationToken cancellationToken = default);
     }
 }
