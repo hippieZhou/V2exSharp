@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf6479ea-0bcc-45ab-b0ff-7a793813ac70" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/V2exSharp/Models/V2Notification.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.V2ex.Sharp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.V2ex.Sharp/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/V2exSharp/Client/IV2exApiClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/V2exSharp/Client/IV2exApiClient.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/V2exSharp/Client/V2exAPIClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/V2exSharp/Client/V2exAPIClient.cs" afterDir="false" />
@@ -61,7 +60,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1664451559284</updated>
-      <workItem from="1664451561022" duration="18218000" />
+      <workItem from="1664451561022" duration="19216000" />
     </task>
     <servers />
   </component>
@@ -101,17 +100,17 @@
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/src/V2exSharp/Client/V2exAPIClient.cs</url>
-          <line>124</line>
-          <properties documentPath="$PROJECT_DIR$/src/V2exSharp/Client/V2exAPIClient.cs" initialLine="124" containingFunctionPresentation="method 'RequestGetAsync'">
+          <url>file://$PROJECT_DIR$/test/V2exSharp.ApiTest/V2exAPIFacts.cs</url>
+          <line>74</line>
+          <properties documentPath="$PROJECT_DIR$/test/V2exSharp.ApiTest/V2exAPIFacts.cs" initialLine="74" containingFunctionPresentation="method 'should_success_when_get_notification'">
             <startOffsets>
-              <option value="5505" />
+              <option value="1934" />
             </startOffsets>
             <endOffsets>
-              <option value="5698" />
+              <option value="1959" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="17" />
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

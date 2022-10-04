@@ -107,18 +107,29 @@ namespace V2exSharp.Client
                 cancellationToken);
         }
 
+        public async Task<V2Response<object>> DeleteNotificationAsync(int notificationId,
+            CancellationToken cancellationToken = default)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Delete, $"{endpointV2}notifications/{notificationId}");
+            request.Headers.Clear();
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _configuration.AccessToken);
+            var response = await _httpClient.SendAsync(request, cancellationToken);
+            response.EnsureSuccessStatusCode();
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<V2Response<object>>(json, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                AllowTrailingCommas = true
+            });
+        }
+
         private async Task<T> RequestGetAsync<T>(string requestUri, CancellationToken cancellationToken)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
             request.Headers.Clear();
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _configuration.AccessToken);
-            // request.Content = new StringContent(JsonSerializer.Serialize(new
-            // {
-            //     fields = "",
-            //     sort_by = "",
-            //      = "1",
-            // }), Encoding.UTF8, "application/json");
             var response = await _httpClient.SendAsync(request, cancellationToken);
             response.EnsureSuccessStatusCode();
             var json = await response.Content.ReadAsStringAsync();

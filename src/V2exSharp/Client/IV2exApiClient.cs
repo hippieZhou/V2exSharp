@@ -80,5 +80,13 @@ namespace V2exSharp.Client
         /// <returns></returns>
         Task<V2Response<IEnumerable<V2Notification>>> GetNotificationAsync(int page = 1,
             CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 删除指定的提醒
+        /// </summary>
+        /// <param name="notificationId">提醒ID</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<V2Response<object>> DeleteNotificationAsync(int notificationId, CancellationToken cancellationToken = default);
     }
 }

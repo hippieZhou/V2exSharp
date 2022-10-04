@@ -74,4 +74,11 @@ public class V2exAPIFacts : BaseApiTestFixture
         var response = await _apiClient.GetNotificationAsync();
         Assert.NotNull(response);
     }
+
+    [Fact]
+    public async Task should_success_when_delete_notification()
+    {
+        var response = await _apiClient.DeleteNotificationAsync(16964359);
+        Assert.NotNull(response);
+    }
 }
