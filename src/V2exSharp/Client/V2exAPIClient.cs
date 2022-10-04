@@ -4,7 +4,6 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
@@ -46,26 +45,29 @@ namespace V2exSharp.Client
             queryString.Add("sort_by", "topics");
             queryString.Add("reverse", "1");
 
-            return await RequestGetAsync<IEnumerable<V2Node>>(
-                endpointV1 + $"nodes/list.json?{queryString}",
-                cancellationToken);
+            var request = CreateRequest(HttpMethod.Get, endpointV1 + $"nodes/list.json?{queryString}");
+            return await RequestGetAsync<IEnumerable<V2Node>>(request, cancellationToken);
         }
 
         public async Task<IEnumerable<V2Topic>> GetHotTopicsAsync(CancellationToken cancellationToken = default)
         {
-            return await RequestGetAsync<IEnumerable<V2Topic>>($"{endpointV1}topics/hot.json", cancellationToken);
+            var request = CreateRequest(HttpMethod.Get, $"{endpointV1}topics/hot.json");
+            return await RequestGetAsync<IEnumerable<V2Topic>>(request, cancellationToken);
         }
 
         public async Task<IEnumerable<V2Topic>> GetLatestTopicsAsync(CancellationToken cancellationToken = default)
         {
-            return await RequestGetAsync<IEnumerable<V2Topic>>($"{endpointV1}topics/latest.json", cancellationToken);
+            var request = CreateRequest(HttpMethod.Get, $"{endpointV1}topics/latest.json");
+            return await RequestGetAsync<IEnumerable<V2Topic>>(request, cancellationToken);
         }
 
         public async Task<V2Node> GetNodesShowAsync(string name, CancellationToken cancellationToken = default)
         {
             var queryString = HttpUtility.ParseQueryString(string.Empty);
             queryString.Add("name", name);
-            return await RequestGetAsync<V2Node>($"{endpointV1}nodes/show.json?{queryString}", cancellationToken);
+            
+            var request = CreateRequest(HttpMethod.Get, $"{endpointV1}nodes/show.json?{queryString}");
+            return await RequestGetAsync<V2Node>(request, cancellationToken);
         }
 
         public async Task<V2Member> GetMemberShowAsync(string username, int? id = null,
@@ -77,8 +79,9 @@ namespace V2exSharp.Client
             {
                 queryString.Add("id", id.ToString());
             }
-
-            return await RequestGetAsync<V2Member>($"{endpointV1}members/show.json?{queryString}", cancellationToken);
+            
+            var request = CreateRequest(HttpMethod.Get, $"{endpointV1}members/show.json?{queryString}");
+            return await RequestGetAsync<V2Member>(request, cancellationToken);
         }
 
         public async Task<V2Response<IEnumerable<V2Topic>>> GetTopicsAsync(string nodeName, int page = 1,
@@ -86,18 +89,22 @@ namespace V2exSharp.Client
         {
             var queryString = HttpUtility.ParseQueryString(string.Empty);
             queryString.Add("nodeName", nodeName);
-            return await RequestGetAsync<V2Response<IEnumerable<V2Topic>>>($"{endpointV2}nodes/{nodeName}/topics",
-                cancellationToken);
+
+            var request = CreateRequest(HttpMethod.Get, $"{endpointV2}nodes/{nodeName}/topics");
+            return await RequestGetAsync<V2Response<IEnumerable<V2Topic>>>(request, cancellationToken);
         }
 
         public async Task<V2Response<V2Topic>> GetTopicAsync(int topicId, CancellationToken cancellationToken = default)
         {
-            return await RequestGetAsync<V2Response<V2Topic>>($"{endpointV2}topics/{topicId}", cancellationToken);
+            var request = CreateRequest(HttpMethod.Get, $"{endpointV2}topics/{topicId}");
+            return await RequestGetAsync<V2Response<V2Topic>>(request, cancellationToken);
         }
 
-        public async Task<V2Response<V2Node>> GetNodeAsync(string nodeName, CancellationToken cancellationToken = default)
+        public async Task<V2Response<V2Node>> GetNodeAsync(string nodeName,
+            CancellationToken cancellationToken = default)
         {
-            return await RequestGetAsync<V2Response<V2Node>>($"{endpointV2}nodes/{nodeName}", cancellationToken);
+            var request = CreateRequest(HttpMethod.Get, $"{endpointV2}nodes/{nodeName}");
+            return await RequestGetAsync<V2Response<V2Node>>(request, cancellationToken);
         }
 
         public async Task<V2Response<IEnumerable<V2Notification>>> GetNotificationAsync(int page = 1,
@@ -105,8 +112,9 @@ namespace V2exSharp.Client
         {
             var queryString = HttpUtility.ParseQueryString(string.Empty);
             queryString.Add("p", page.ToString());
-            return await RequestGetAsync<V2Response<IEnumerable<V2Notification>>>($"{endpointV2}notifications?{queryString}",
-                cancellationToken);
+
+            var request = CreateRequest(HttpMethod.Get, $"{endpointV2}notifications?{queryString}");
+            return await RequestGetAsync<V2Response<IEnumerable<V2Notification>>>(request, cancellationToken);
         }
 
         public async Task<V2Response<object>> DeleteNotificationAsync(int notificationId,
@@ -128,7 +136,8 @@ namespace V2exSharp.Client
 
         public async Task<V2Response<V2Member>> GetMemberAsync(CancellationToken cancellationToken = default)
         {
-            return await RequestGetAsync<V2Response<V2Member>>($"{endpointV2}member", cancellationToken);
+            var request = CreateRequest(HttpMethod.Get, $"{endpointV2}member");
+            return await RequestGetAsync<V2Response<V2Member>>(request, cancellationToken);
         }
 
         public async Task<V2Response<V2Token>> CreateTokenAsync(int expiration, string scope,
@@ -150,12 +159,8 @@ namespace V2exSharp.Client
             });
         }
 
-        private async Task<T> RequestGetAsync<T>(string requestUri, CancellationToken cancellationToken)
+        private async Task<T> RequestGetAsync<T>(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
-            request.Headers.Clear();
-            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _configuration.AccessToken);
             var response = await _httpClient.SendAsync(request, cancellationToken);
             response.EnsureSuccessStatusCode();
             var json = await response.Content.ReadAsStringAsync();
@@ -164,6 +169,15 @@ namespace V2exSharp.Client
                 PropertyNameCaseInsensitive = true,
                 AllowTrailingCommas = true
             });
+        }
+
+        private HttpRequestMessage CreateRequest(HttpMethod httpMethod, string requestUri)
+        {
+            var request = new HttpRequestMessage(httpMethod, requestUri);
+            request.Headers.Clear();
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _configuration.AccessToken);
+            return request;
         }
     }
 }
