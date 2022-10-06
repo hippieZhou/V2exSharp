@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using V2exSharp.Models;
 
-namespace V2exSharp.Client
+namespace V2exSharp
 {
     public interface IV2exApiClient
     {

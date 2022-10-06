@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -9,16 +10,15 @@ using System.Threading.Tasks;
 using System.Web;
 using Microsoft.Extensions.Logging;
 using V2exSharp.Models;
-using V2exSharp.Option;
 
-namespace V2exSharp.Client
+namespace V2exSharp
 {
     public class V2exApiClient : IV2exApiClient
     {
         private const string endpointV1 = "https://v2ex.com/api/";
         private const string endpointV2 = "https://www.v2ex.com/api/v2/";
 
-        private readonly V2ExSharpConfiguration _configuration = new();
+        private readonly V2exSharpOptions _options = new();
         private readonly HttpClient _httpClient;
         private readonly ILogger<V2exApiClient> _logger;
 
@@ -29,11 +29,11 @@ namespace V2exSharp.Client
         /// <param name="httpClient"></param>
         /// <param name="logger"></param>
         public V2exApiClient(
-            Action<V2ExSharpConfiguration> configuration,
+            Action<V2exSharpOptions> configuration,
             HttpClient httpClient,
             ILogger<V2exApiClient> logger)
         {
-            configuration?.Invoke(_configuration);
+            configuration?.Invoke(_options);
             _httpClient = httpClient;
             _logger = logger;
         }
@@ -139,11 +139,18 @@ namespace V2exSharp.Client
         {
             var response = await _httpClient.SendAsync(request, cancellationToken);
             response.EnsureSuccessStatusCode();
+
+            foreach (var header in response.Headers)
+            {
+                _logger.LogDebug($"{header.Key}={header.Value.First()}");
+            }
+
             var json = await response.Content.ReadAsStringAsync();
             return JsonSerializer.Deserialize<T>(json, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true,
-                AllowTrailingCommas = true
+                AllowTrailingCommas = true,
+                WriteIndented = true
             });
         }
 
@@ -152,7 +159,7 @@ namespace V2exSharp.Client
             var request = new HttpRequestMessage(httpMethod, requestUri);
             request.Headers.Clear();
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _configuration.AccessToken);
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _options.AccessToken);
             return request;
         }
 
