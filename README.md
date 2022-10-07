@@ -4,6 +4,7 @@
 
 ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=flat&logo=.net&logoColor=white)
 ![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=flat&logo=c-sharp&logoColor=white)
+[![Github workflow](https://github.com/hippieZhou/V2exSharp/actions/workflows/dotnet.yml/badge.svg)](https://github.com/hippieZhou/V2exSharp/actions/workflows/dotnet.yml)
 [![GitHub stars](https://img.shields.io/github/stars/hippieZhou/V2exSharp?label=stars)](https://github.com/hippieZhou/V2exSharp/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/hippieZhou/V2exSharp?label=forks)](https://github.com/hippieZhou/V2exSharp/network)
 [![GitHub license](https://img.shields.io/github/license/hippieZhou/V2exSharp?label=license)](https://github.com/hippieZhou/V2exSharp)
