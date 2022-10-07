@@ -139,12 +139,12 @@ namespace V2exSharp
         {
             var response = await _httpClient.SendAsync(request, cancellationToken);
             response.EnsureSuccessStatusCode();
-
+#if DEBUG
             foreach (var header in response.Headers)
             {
-                _logger.LogDebug($"{header.Key}={header.Value.First()}");
+                _logger.LogInformation($"{header.Key}={header.Value.First()}");
             }
-
+#endif
             var json = await response.Content.ReadAsStringAsync();
             return JsonSerializer.Deserialize<T>(json, new JsonSerializerOptions
             {

@@ -1,4 +1,6 @@
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace V2exSharp.ApiTest;
 
@@ -8,9 +10,15 @@ public abstract class BaseApiTestFixture
 
     protected BaseApiTestFixture()
     {
-        var serviceCollection = new ServiceCollection();
-        serviceCollection.AddV2exSharp(opt => { opt.AccessToken = "152e5a32-16c3-4851-ba88-43d717b7e012"; });
-        _container = serviceCollection.BuildServiceProvider();
+        var configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", false)
+            .Build();
+        _container = new ServiceCollection()
+            .AddSingleton(configuration)
+            .AddLogging(builder => builder.AddConsole())
+            .AddV2exSharp(opt => { opt.AccessToken = configuration.GetSection("AccessToken").Value; })
+            .BuildServiceProvider();
     }
 
     protected T GetService<T>() => _container.GetService<T>()!;

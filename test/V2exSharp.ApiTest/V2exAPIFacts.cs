@@ -90,7 +90,7 @@ public class V2exAPIFacts : BaseApiTestFixture
         Assert.Equal("hippiezhou", response.Result.Username, true);
     }
 
-    [Fact]
+    [Fact(Skip = "no need to check")]
     public async Task should_success_when_createToken()
     {
         var response = await _apiClient.CreateTokenAsync(2592000, "regular");
