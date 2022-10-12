@@ -11,6 +11,12 @@
 
 </div>
 
+## Pack
+
+```bash
+dotnet pack V2exSharp.csproj -c Release /p:Version=$ReleaseVersion
+```
+
 ## Features
 
 - [x] Use `FluentAPI` to integrate

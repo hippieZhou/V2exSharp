@@ -5,18 +5,17 @@
         <LangVersion>default</LangVersion>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>V2exSharp</PackageId>
-        <Version>1.0.0</Version>
+        <Version>$(PackageVersion)</Version>
+        <PackageVersion>$(PackageVersion)</PackageVersion>
         <Authors>hippiezhou</Authors>
         <Company>hippiezhou</Company>
         <PackageTags>V2ex Api</PackageTags>
         <Description>This package will help you to integrate offical V2ex API quickly.</Description>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
     </PropertyGroup>
+    
 
     <ItemGroup>
-      <PackageReference Include="GitVersion.MsBuild" Version="5.10.3">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
       <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
       <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
