@@ -89,6 +89,13 @@ public class V2exAPIFacts : BaseApiTestFixture
         var response = await _apiClient.GetMemberAsync();
         Assert.Equal("hippiezhou", response.Result.Username, true);
     }
+    
+    [Fact]
+    public async Task should_not_null_when_getReplies()
+    {
+        var response = await _apiClient.GetRepliesAsync(886237);
+        Assert.True(response.Success);
+    }
 
     [Fact(Skip = "no need to check")]
     public async Task should_success_when_createToken()

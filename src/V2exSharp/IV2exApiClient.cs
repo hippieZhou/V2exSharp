@@ -97,6 +97,15 @@ namespace V2exSharp
         Task<V2Response<V2Member>> GetMemberAsync(CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// 获取指定主题下的回复
+        /// </summary>
+        /// <param name="topicId">主题ID</param>
+        /// <param name="page">分页页码，默认为 1</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<V2Response<IEnumerable<V2Reply>>> GetRepliesAsync(int topicId, int page = 1, CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// 创建新的令牌（你可以在系统中最多创建 10 个 Personal Access Token。）
         /// </summary>
         /// <param name="expiration">可支持的值：2592000，5184000，7776000 或者 15552000，即 30 天，60 天，90 天或者 180 天的秒数</param>

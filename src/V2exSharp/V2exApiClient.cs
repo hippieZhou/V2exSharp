@@ -128,6 +128,13 @@ namespace V2exSharp
             return await RequestGetAsync<V2Response<V2Member>>(request, cancellationToken);
         }
 
+        public async Task<V2Response<IEnumerable<V2Reply>>> GetRepliesAsync(int topicId, int page = 1,
+            CancellationToken cancellationToken = default)
+        {
+            var request = CreateRequest(HttpMethod.Get, $"{endpointV2}topics/{topicId}/replies?p={page}");
+            return await RequestGetAsync<V2Response<IEnumerable<V2Reply>>>(request, cancellationToken);
+        }
+
         public async Task<V2Response<V2Token>> CreateTokenAsync(int expiration, string scope,
             CancellationToken cancellationToken = default)
         {
