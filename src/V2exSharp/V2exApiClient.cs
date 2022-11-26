@@ -18,6 +18,7 @@ namespace V2exSharp
         private const string endpointV1 = "https://v2ex.com/api/";
         private const string endpointV2 = "https://www.v2ex.com/api/v2/";
 
+        private readonly Dictionary<string, object> responseCache = new();
         private readonly V2exSharpOptions _options = new();
         private readonly HttpClient _httpClient;
         private readonly ILogger<V2exApiClient> _logger;
@@ -142,23 +143,47 @@ namespace V2exSharp
             return await RequestGetAsync<V2Response<V2Token>>(request, cancellationToken);
         }
 
-        private async Task<T> RequestGetAsync<T>(HttpRequestMessage request, CancellationToken cancellationToken)
+        private async Task<T> RequestGetAsync<T>(HttpRequestMessage request,
+            CancellationToken cancellationToken = default, bool forceRefresh = false)
         {
-            var response = await _httpClient.SendAsync(request, cancellationToken);
-            response.EnsureSuccessStatusCode();
+            T result;
+            var uri = request.RequestUri.AbsoluteUri;
+
+            if (forceRefresh || !responseCache.ContainsKey(uri))
+            {
+                var response = await _httpClient.SendAsync(request, cancellationToken).ConfigureAwait(false);
+                response.EnsureSuccessStatusCode();
 #if DEBUG
-            foreach (var header in response.Headers)
-            {
-                _logger.LogInformation($"{header.Key}={header.Value.First()}");
-            }
+                foreach (var header in response.Headers)
+                {
+                    var key = header.Key;
+                    var value = header.Value;
+                    _logger.LogInformation("{Key}={Value}", key, value);
+                }
 #endif
-            var json = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<T>(json, new JsonSerializerOptions
+                var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                result = await Task.Run(() => JsonSerializer.Deserialize<T>(json, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true,
+                    AllowTrailingCommas = true,
+                    WriteIndented = true
+                }), cancellationToken).ConfigureAwait(false);
+
+                if (responseCache.ContainsKey(uri))
+                {
+                    responseCache[uri] = result;
+                }
+                else
+                {
+                    responseCache.Add(uri, result);
+                }
+            }
+            else
             {
-                PropertyNameCaseInsensitive = true,
-                AllowTrailingCommas = true,
-                WriteIndented = true
-            });
+                result = (T) responseCache[uri];
+            }
+
+            return result;
         }
 
         private HttpRequestMessage CreateRequest(HttpMethod httpMethod, string requestUri)
