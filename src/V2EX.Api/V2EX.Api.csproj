@@ -11,7 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\V2exSharp\V2exSharp.csproj" />
+      <ProjectReference Include="..\V2ExSharp\V2ExSharp.csproj" />
     </ItemGroup>
 
 </Project>

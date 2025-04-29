@@ -2,9 +2,9 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using V2exSharp.Helpers;
 using V2exSharp.Models;
 using V2exSharp.Options;
 
@@ -16,7 +16,7 @@ public partial class CookieContainerManager
     private const string UserKey = "user.json";
     public CookieContainer Container { get; } = new();
     
-    public UserInfo User { get; private set; }
+    public UserInfo? User { get; private set; }
 
     private readonly IOptions<V2ExApiClientOption> _options;
     private readonly ILogger<CookieContainerManager> _logger;
@@ -75,43 +75,15 @@ public partial class CookieContainerManager
 {
     private string FilePath(string key) => Path.Combine(_options.Value.LocalStoragePath, key);
 
-    private T Get<T>(string key, T defaultValue)
+    private T? Get<T>(string key, T? defaultValue)
     {
         var filePath = FilePath(key);
-        if (!File.Exists(filePath))
-        {
-            return defaultValue;
-        }
-        try
-        {
-            var result = File.ReadAllText(filePath);
-            return string.IsNullOrEmpty(result) ? defaultValue : JsonSerializer.Deserialize<T>(result);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, ex.Message);
-            return defaultValue;
-        }
+        return FileStorageHelper.Get(filePath, defaultValue, _logger);
     }
 
     private void Set<T>(string key, T value)
     {
         var filePath = FilePath(key);
-
-        var json = JsonSerializer.Serialize(value,
-            new JsonSerializerOptions
-            {
-                WriteIndented = true
-            });
-
-        try
-        {
-            using var writer = File.CreateText(filePath);
-            writer.WriteLine(json);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, ex.Message);
-        }
+        FileStorageHelper.Set(filePath, value, _logger);
     }
 }

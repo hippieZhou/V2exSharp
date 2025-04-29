@@ -6,7 +6,7 @@ using V2exSharp.Managers;
 
 namespace V2exSharp.Handlers;
 
-internal sealed class ApiHttpClientHandler: HttpClientHandler
+public sealed class ApiHttpClientHandler : HttpClientHandler
 {
     private readonly NetworkProxyManager _networkProxyManager;
 
@@ -22,7 +22,7 @@ internal sealed class ApiHttpClientHandler: HttpClientHandler
         this.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
 
 #if WINDOWS
-        var networkSettings = this.NetworkProxyService.GetAsync().Result;
+        var networkSettings = this._networkProxyManager.GetAsync().Result;
         var proxyUrl = networkSettings.GetProxyUrl();
         if (proxyUrl == null)
         {
@@ -35,7 +35,8 @@ internal sealed class ApiHttpClientHandler: HttpClientHandler
 #endif
     }
 
-    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
+        CancellationToken cancellationToken)
     {
         return await base.SendAsync(request, cancellationToken);
     }

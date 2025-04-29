@@ -5,13 +5,18 @@ using V2exSharp.Handlers;
 using V2exSharp.Managers;
 using V2exSharp.Options;
 
-namespace V2exSharp.DependencyInjection;
+namespace V2exSharp.Extensions;
 
 public static class V2ExSharpBuilderExtensions
 {
     public static IServiceCollection AddV2ExSharp(this IServiceCollection serviceCollection)
     {
-        serviceCollection.AddOptions<V2ExApiClientOption>();
+        serviceCollection.AddOptions<V2ExApiClientOption>()
+            .Configure(options =>
+            {
+                options.LocalStoragePath = AppContext.BaseDirectory;
+                options.AccessToken = string.Empty;
+            });
 
         serviceCollection.AddSingleton<CookieContainerManager>();
         serviceCollection.AddSingleton<NetworkProxyManager>();
