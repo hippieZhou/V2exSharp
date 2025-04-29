@@ -17,7 +17,7 @@ public class ApiClientTestFixture
     public void should_get_api_client_success_when_register_into_ioc()
     {
         var container = new ServiceCollection()
-            .AddV2exSharp(opt => { opt.AccessToken = "152e5a32-16c3-4851-ba88-43d717b7e012"; })
+            .AddV2ExSharp(opt => { opt.AccessToken = "152e5a32-16c3-4851-ba88-43d717b7e012"; })
             .BuildServiceProvider();
         var instance = container.GetService<IV2exApiClient>();
         Assert.NotNull(instance);

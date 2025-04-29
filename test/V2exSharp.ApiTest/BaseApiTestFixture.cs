@@ -17,7 +17,7 @@ public abstract class BaseApiTestFixture
         _container = new ServiceCollection()
             .AddSingleton(configuration)
             .AddLogging(builder => builder.AddConsole())
-            .AddV2exSharp(opt => { opt.AccessToken = configuration.GetSection("AccessToken").Value; })
+            .AddV2ExSharp(opt => { opt.AccessToken = configuration.GetSection("AccessToken").Value; })
             .BuildServiceProvider();
     }
 

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
+        <TargetFramework>net9.0</TargetFramework>
         <LangVersion>default</LangVersion>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>V2exSharp</PackageId>
@@ -16,9 +16,15 @@
     
 
     <ItemGroup>
+      <PackageReference Include="HtmlAgilityPack" Version="1.12.1" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.4" />
       <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.4" />
       <PackageReference Include="System.Text.Json" Version="9.0.4" />
+    </ItemGroup>
+    
+
+    <ItemGroup>
+      <Folder Include="Utils\" />
     </ItemGroup>
 
 </Project>
