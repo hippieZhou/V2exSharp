@@ -13,7 +13,7 @@ using V2exSharp.Models;
 
 namespace V2exSharp;
 
-public class V2ExApiClient(HttpClient httpClient, ILogger<V2ExApiClient> logger) : IV2ExApiClient
+public class V2ExApiClient(HttpClient httpClient, ILogger<V2ExApiClient>? logger) : IV2ExApiClient
 {
     public async Task<DailyHotInfo?> GetDailyHotAsync(CancellationToken cancellationToken = default)
     {
