@@ -1,5 +1,7 @@
 using System;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.DependencyInjection;
+using V2exSharp.Auth;
 using V2exSharp.Constants;
 using V2exSharp.Handlers;
 using V2exSharp.Managers;
@@ -30,7 +32,11 @@ public static class V2ExSharpBuilderExtensions
             })
             .ConfigurePrimaryHttpMessageHandler(sp => sp.GetRequiredService<ApiHttpClientHandler>())
             .AddHttpMessageHandler<LoggingHandler>();
-        ;
+
+        serviceCollection.AddSingleton<AuthenticationStateProvider, V2ExAuthenticationStateProvider>();
+        serviceCollection.AddSingleton<IAuthenticationStateProvider, V2ExAuthenticationStateProvider>(sp =>
+            (V2ExAuthenticationStateProvider)sp.GetRequiredService<AuthenticationStateProvider>());
+
         return serviceCollection;
     }
 }
